@@ -60,18 +60,18 @@ Part 2 is complete. The work done in this part is:
 
 ## Responsive screenshots
 
-I tested the website on a PC and on a real mobile phone. The mobile screenshots show the phone status bar and battery, which shows that the mobile test was done on a phone. I do not have a tablet device, so I did not add tablet screenshots.
+I tested the website on a PC and on a real mobile phone. The mobile screenshots show the phone status bar and battery, which shows that the mobile test was done on a phone. I do not have a tablet device, so the tablet screenshots were captured at a 768px tablet-size browser view.
 
-| Page | PC | Mobile phone |
-| --- | --- | --- |
-| Home | [PC Home](evidence/PC%20Home.png) | [Mobile Home](evidence/Mobile%20Home.jpg) |
-| About | [PC About](evidence/PC%20About.png) | [Mobile About](evidence/Mobile%20About.jpg) |
-| Menu | [PC Menu](evidence/PC%20Menu%20%282%29.png) | [Mobile Menu](evidence/Mobile%20Menu.jpg) |
-| Cart | [PC Cart](evidence/PC%20Cart.png) | [Mobile Cart](evidence/Mobile%20Cart.jpg) |
-| Contact | [PC Contact](evidence/PC%20Contact.png) | [Mobile Contact](evidence/Mobile%20Conctact.jpg) |
-| Sign up | [PC Sign up](evidence/PC%20Sign%20Up.png) | [Mobile Sign up](evidence/Mobile%20Sign%20Up.jpg) |
-| Sign in | [PC Sign in](evidence/PC%20Sign%20In.png) | [Mobile Sign in](evidence/Mobile%20Sign%20In.jpg) |
-| Checkout | [PC Checkout](evidence/PC%20Equiry.png) | [Mobile Checkout](evidence/Mobile%20Equire%20.jpg) |
+| Page | PC | Tablet (768px browser view) | Mobile phone |
+| --- | --- | --- | --- |
+| Home | [PC Home](evidence/PC%20Home.png) | [Tablet Home](screenshots/index-tablet.png) | [Mobile Home](evidence/Mobile%20Home.jpg) |
+| About | [PC About](evidence/PC%20About.png) | [Tablet About](screenshots/about-tablet.png) | [Mobile About](evidence/Mobile%20About.jpg) |
+| Menu | [PC Menu](evidence/PC%20Menu%20%282%29.png) | [Tablet Menu](screenshots/menu-tablet.png) | [Mobile Menu](evidence/Mobile%20Menu.jpg) |
+| Cart | [PC Cart](evidence/PC%20Cart.png) | [Tablet Cart](screenshots/cart-tablet.png) | [Mobile Cart](evidence/Mobile%20Cart.jpg) |
+| Contact | [PC Contact](evidence/PC%20Contact.png) | [Tablet Contact](screenshots/contact-tablet.png) | [Mobile Contact](evidence/Mobile%20Conctact.jpg) |
+| Sign up | [PC Sign up](evidence/PC%20Sign%20Up.png) | [Tablet Sign up](screenshots/register-tablet.png) | [Mobile Sign up](evidence/Mobile%20Sign%20Up.jpg) |
+| Sign in | [PC Sign in](evidence/PC%20Sign%20In.png) | [Tablet Sign in](screenshots/signin-tablet.png) | [Mobile Sign in](evidence/Mobile%20Sign%20In.jpg) |
+| Checkout | [PC Checkout](evidence/PC%20Equiry.png) | [Tablet Checkout](screenshots/enquiry-tablet.png) | [Mobile Checkout](evidence/Mobile%20Equire%20.jpg) |
 
 ## Files
 
@@ -115,6 +115,12 @@ evidence/
 - Kept buttons in their normal colour when pressed or hovered.
 - Updated this README in simple English.
 - Replaced the old computer-made screenshots with my own PC and real mobile phone screenshots.
+
+### Part 2 update - 17 September 2026
+
+- Added tablet browser screenshots to the README testing evidence.
+- Added hover animations for food photos, food cards, buttons, navigation links, and information paragraphs.
+- Made the Maka Nana logo rotate when the mouse moves over it.
 
 ### Part 1 - 11 August 2026
 
