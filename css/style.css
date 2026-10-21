@@ -334,6 +334,8 @@ body.preview-open { overflow: hidden; }
 .price { color: var(--color-red); font-size: 1.25rem; font-weight: bold; margin: 0.5rem 0; }
 .cart-count { display: inline-grid; place-items: center; min-width: 1.4rem; height: 1.4rem; padding: 0 0.25rem; margin-left: 0.2rem; background: var(--color-gold); color: var(--color-black); border-radius: 999px; font-size: 0.8rem; }
 .menu-intro { text-align: center; }
+.menu-intro label { display: block; margin-top: 1rem; }
+.menu-intro input { width: min(100%, 420px); }
 .meal-switcher { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; }
 .static-meal-panel { margin-bottom: 1rem; }
 .static-meal-panel { min-width: 0; }
@@ -412,6 +414,27 @@ button, .btn, .site-nav a { -webkit-tap-highlight-color: transparent; }
 form button {
     margin-top: 1.2rem;
     align-self: flex-start;
+}
+
+/* Part 3 form feedback is easy to see and read. */
+.form-error {
+    min-height: 1.4rem;
+    margin-top: .2rem;
+    color: #a0001b;
+    font-weight: 700;
+}
+.form-result {
+    margin-top: 1rem;
+    padding: .8rem 1rem;
+    border-left: 4px solid var(--color-gold);
+    background: var(--color-white);
+}
+.form-result:empty { display: none; }
+.business-map {
+    width: 100%;
+    min-height: 320px;
+    border: 0;
+    border-radius: 8px;
 }
 
 /* ===== Tables (Menu, Cart) ===== */

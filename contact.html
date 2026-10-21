@@ -1,1 +1,66 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Maka Nana - Contact</title><link rel="stylesheet" href="css/style.css?v=20260914-6"></head><body><header class="site-header"><a class="brand-logo" href="index.html"><img src="images/maka-nana-logo.jpg" alt="Maka Nana"></a><nav class="site-nav"><a href="menu.html">Menu</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav><div class="header-actions"><a class="account-link" href="register.html">Sign in/up</a><a class="cart-link" href="cart.html">Cart <span class="cart-count">0</span></a></div></header><main><section><h2>Contact Us</h2><p>Phone / WhatsApp: +27 71 840 5670</p><p>Find us near Spar, Durban, KwaZulu-Natal</p><p><a class="btn" href="enquiry.html">Make an enquiry</a></p></section><section><h2>Leave a message</h2><p>Your saved account details will be included automatically.</p><form id="message-form"><label for="message">Your message</label><textarea id="message" rows="5" required></textarea><button type="submit">Send message</button></form><p id="message-login-required" class="account-helper" hidden>Please <a href="signin.html">sign in</a> or <a href="register.html">create an account</a> before sending a message.</p></section></main><footer><p>Phone / WhatsApp: +27 71 840 5670</p><p>Find us near Spar, Durban, KwaZulu-Natal</p><p>&copy; 2026 Maka Nana Shisanyama</p></footer><script src="js/script.js?v=20260914-3"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact Maka Nana Shisanyama | Durban</title>
+    <meta name="description" content="Contact Maka Nana Shisanyama in Durban. Send a message, make an enquiry, or find the business near Spar.">
+    <meta name="keywords" content="contact Maka Nana, Durban shisanyama, food enquiry, takeaway contact">
+    <link rel="stylesheet" href="css/style.css?v=20261021-1">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand-logo" href="index.html"><img src="images/maka-nana-logo.jpg" alt="Maka Nana Shisanyama logo"></a>
+        <nav class="site-nav"><a href="menu.html">Menu</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav>
+        <div class="header-actions"><a class="account-link" href="register.html">Sign in/up</a><a class="cart-link" href="cart.html">Cart <span class="cart-count">0</span></a></div>
+    </header>
+
+    <main>
+        <section>
+            <h2>Contact Us</h2>
+            <p>Phone / WhatsApp: +27 71 840 5670</p>
+            <p>Find us near Spar, Durban, KwaZulu-Natal.</p>
+            <p><a class="btn" href="enquiry.html">Make an enquiry</a></p>
+        </section>
+
+        <section>
+            <h2>Find us</h2>
+            <!-- This map helps customers find the Durban area. -->
+            <iframe class="business-map" title="Map of Durban near Spar" src="https://www.google.com/maps?q=Spar%20Durban%20KwaZulu-Natal&output=embed" loading="lazy"></iframe>
+        </section>
+
+        <section>
+            <h2>Send a message</h2>
+            <p>Fill in the form. After it is checked, you can open your email app with the message ready.</p>
+            <form id="contact-form" novalidate>
+                <label for="contact-name">Full name</label>
+                <input id="contact-name" name="name" type="text" autocomplete="name" required>
+                <small class="form-error" id="contact-name-error"></small>
+
+                <label for="contact-email">Email address</label>
+                <input id="contact-email" name="email" type="email" autocomplete="email" required>
+                <small class="form-error" id="contact-email-error"></small>
+
+                <label for="message-type">Message type</label>
+                <select id="message-type" name="message-type" required>
+                    <option value="">Choose one</option>
+                    <option value="Question">Question</option>
+                    <option value="Feedback">Feedback</option>
+                    <option value="Booking">Booking question</option>
+                </select>
+                <small class="form-error" id="message-type-error"></small>
+
+                <label for="message">Your message</label>
+                <textarea id="message" name="message" rows="5" minlength="10" required></textarea>
+                <small class="form-error" id="message-error"></small>
+
+                <button type="submit">Check message</button>
+            </form>
+            <p id="contact-result" class="form-result" aria-live="polite"></p>
+        </section>
+    </main>
+
+    <footer><p>Phone / WhatsApp: +27 71 840 5670</p><p>Find us near Spar, Durban, KwaZulu-Natal</p></footer>
+    <script src="js/script.js?v=20261021-1"></script>
+</body>
+</html>

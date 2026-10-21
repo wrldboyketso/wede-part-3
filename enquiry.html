@@ -1,1 +1,62 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Maka Nana - Checkout</title><link rel="stylesheet" href="css/style.css?v=20260914-6"></head><body><header class="site-header"><a class="brand-logo" href="index.html"><img src="images/maka-nana-logo.jpg" alt="Maka Nana"></a><nav class="site-nav"><a href="menu.html">Menu</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav><div class="header-actions"><a class="account-link" href="register.html">Sign in/up</a><a class="cart-link" href="cart.html">Cart <span class="cart-count">0</span></a></div></header><main><section><h2>Checkout</h2><p>Your order and account details will be used automatically at payment.</p><form id="checkout-form"><label for="delivery-method">Delivery or collect</label><select id="delivery-method" required><option value="delivery">Delivery</option><option value="collect">Collect</option></select><div id="location-field"><label for="location">Delivery location</label><input id="location" type="text" placeholder="Enter your delivery address"></div><button type="submit">Pay now</button></form><p id="login-required" class="account-helper" hidden>Please <a href="signin.html">sign in</a> or <a href="register.html">create an account</a> before payment can continue.</p></section></main><footer><p>Phone / WhatsApp: +27 71 840 5670</p><p>Find us near Spar, Durban, KwaZulu-Natal</p><p>&copy; 2026 Maka Nana Shisanyama</p></footer><script src="js/script.js?v=20260914-3"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Order Enquiry | Maka Nana Shisanyama</title>
+    <meta name="description" content="Send Maka Nana Shisanyama an order enquiry for collection or delivery in Durban.">
+    <meta name="keywords" content="Maka Nana enquiry, food delivery, food collection, Durban order">
+    <link rel="stylesheet" href="css/style.css?v=20261021-1">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand-logo" href="index.html"><img src="images/maka-nana-logo.jpg" alt="Maka Nana Shisanyama logo"></a>
+        <nav class="site-nav"><a href="menu.html">Menu</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav>
+        <div class="header-actions"><a class="account-link" href="register.html">Sign in/up</a><a class="cart-link" href="cart.html">Cart <span class="cart-count">0</span></a></div>
+    </header>
+
+    <main>
+        <section>
+            <h2>Order enquiry</h2>
+            <p>Tell us what you would like to order. This student website saves the enquiry in this browser only.</p>
+            <form id="enquiry-form" novalidate>
+                <label for="enquiry-name">Full name</label>
+                <input id="enquiry-name" type="text" autocomplete="name" required>
+                <small class="form-error" id="enquiry-name-error"></small>
+
+                <label for="enquiry-phone">Phone number</label>
+                <input id="enquiry-phone" type="tel" inputmode="tel" placeholder="e.g. 071 840 5670" required>
+                <small class="form-error" id="enquiry-phone-error"></small>
+
+                <label for="enquiry-email">Email address</label>
+                <input id="enquiry-email" type="email" autocomplete="email" required>
+                <small class="form-error" id="enquiry-email-error"></small>
+
+                <label for="delivery-method">Delivery or collection</label>
+                <select id="delivery-method" required>
+                    <option value="">Choose one</option>
+                    <option value="Delivery">Delivery</option>
+                    <option value="Collection">Collection</option>
+                </select>
+                <small class="form-error" id="delivery-method-error"></small>
+
+                <div id="location-field" hidden>
+                    <label for="location">Delivery address</label>
+                    <input id="location" type="text" placeholder="Enter your delivery address">
+                    <small class="form-error" id="location-error"></small>
+                </div>
+
+                <label for="order-message">What would you like to order?</label>
+                <textarea id="order-message" rows="5" minlength="5" required></textarea>
+                <small class="form-error" id="order-message-error"></small>
+
+                <button type="submit">Send enquiry</button>
+            </form>
+            <p id="enquiry-result" class="form-result" aria-live="polite"></p>
+        </section>
+    </main>
+
+    <footer><p>Phone / WhatsApp: +27 71 840 5670</p><p>Find us near Spar, Durban, KwaZulu-Natal</p></footer>
+    <script src="js/script.js?v=20261021-1"></script>
+</body>
+</html>

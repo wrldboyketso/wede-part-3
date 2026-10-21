@@ -36,6 +36,19 @@ Part 2 is complete. The work done in this part is:
 - Mobile food sliders. Users can swipe, or use the left and right arrows.
 - Photos can be pressed to see the full photo.
 
+## Part 3: JavaScript and website improvements
+
+Part 3 has started. The code is kept simple so it is easy for a beginner to read.
+
+- The menu has a search box. A customer can type a food name and see matching meals.
+- The enquiry form checks the name, phone number, email address, order, and delivery choice.
+- The delivery address only shows when the customer chooses delivery.
+- A correct enquiry is saved in the browser for this student demo. It does not send a real order.
+- The contact form checks all fields. It makes an email link after the message is correct.
+- The email link uses `info@makananashisanyama.co.za` as a demo recipient. This must be changed if the business gives a different email address.
+- The contact page has a Google map for the Durban Spar area.
+- Main pages now have page titles, descriptions, keywords, useful image alt text, and a `robots.txt` file.
+
 ## Before and after Part 2
 
 | Before | After Part 2 |
@@ -90,6 +103,7 @@ js/script.js
 images/
 screenshots/
 evidence/
+robots.txt
 ```
 
 ## Easy code notes
@@ -122,6 +136,16 @@ evidence/
 - Added hover animations for food photos, food cards, buttons, navigation links, and information paragraphs.
 - Made the Maka Nana logo rotate when the mouse moves over it.
 
+### Part 3 start - 21 October 2026
+
+- Added a working menu search box for single meals and combo meals.
+- Added a full order enquiry form with simple checks and clear error messages.
+- Added delivery and collection choices. The address field only shows for delivery.
+- Added a contact form with simple checks and an email-app link.
+- Added a map to the contact page.
+- Added SEO page titles, descriptions, keywords, and clearer image alt text on the main pages.
+- Added `robots.txt`.
+
 ### Part 1 - 11 August 2026
 
 - Made the main HTML pages.
@@ -134,3 +158,5 @@ evidence/
 - MDN Web Docs, 2026. CSS Flexible Box Layout. Available at: <https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout> [Accessed 14 September 2026].
 - MDN Web Docs, 2026. CSS Grid Layout. Available at: <https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout> [Accessed 14 September 2026].
 - MDN Web Docs, 2026. Responsive design. Available at: <https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design> [Accessed 14 September 2026].
+- MDN Web Docs, 2026. Client-side form validation. Available at: <https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation> [Accessed 21 October 2026].
+- Google Maps, 2026. Durban, KwaZulu-Natal map. Available at: <https://www.google.com/maps?q=Spar%20Durban%20KwaZulu-Natal> [Accessed 21 October 2026].

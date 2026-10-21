@@ -134,32 +134,6 @@ document.addEventListener('click', (event) => {
     showCart();
 });
 
-// Checkout page behaviour.
-const checkoutForm = document.querySelector('#checkout-form');
-
-if (checkoutForm) {
-    const deliveryMethod = document.querySelector('#delivery-method');
-    const locationField = document.querySelector('#location-field');
-
-    deliveryMethod.addEventListener('change', () => {
-        locationField.hidden = deliveryMethod.value === 'collect';
-    });
-
-    checkoutForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        document.querySelector('#login-required').hidden = false;
-    });
-}
-
-const messageForm = document.querySelector('#message-form');
-
-if (messageForm) {
-    messageForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        document.querySelector('#message-login-required').hidden = false;
-    });
-}
-
 // Full size food photo popup.
 const imagePreview = document.createElement('div');
 imagePreview.className = 'image-preview';
@@ -269,3 +243,122 @@ document.querySelectorAll('.static-meal-panel .panel-content').forEach((panel, i
 showComboMeals();
 updateCartCount();
 showCart();
+
+// Part 3: search both the single meals and the combo meals.
+const menuSearch = document.querySelector('#menu-search');
+
+if (menuSearch) {
+    const searchMessage = document.querySelector('#menu-search-message');
+
+    menuSearch.addEventListener('input', () => {
+        const searchWord = menuSearch.value.trim().toLowerCase();
+        const meals = document.querySelectorAll('.single-meals tbody tr, .menu-card');
+        let mealsShown = 0;
+
+        meals.forEach((meal) => {
+            const mealName = meal.textContent.toLowerCase();
+            const shouldShow = mealName.includes(searchWord);
+
+            meal.hidden = !shouldShow;
+            if (shouldShow) mealsShown += 1;
+        });
+
+        searchMessage.hidden = mealsShown !== 0 || searchWord === '';
+    });
+}
+
+// Show one simple error message under a form field.
+function showFieldError(fieldId, message) {
+    const error = document.querySelector(`#${fieldId}-error`);
+    const field = document.querySelector(`#${fieldId}`);
+
+    if (error) error.textContent = message;
+    if (field) field.setAttribute('aria-invalid', message ? 'true' : 'false');
+
+    return message === '';
+}
+
+function hasText(fieldId, message) {
+    const field = document.querySelector(`#${fieldId}`);
+    return showFieldError(fieldId, field.value.trim() ? '' : message);
+}
+
+function hasEmail(fieldId) {
+    const field = document.querySelector(`#${fieldId}`);
+    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value.trim());
+    return showFieldError(fieldId, isEmail ? '' : 'Enter a valid email address.');
+}
+
+// Save an enquiry in this browser and show a clear success message.
+const enquiryForm = document.querySelector('#enquiry-form');
+
+if (enquiryForm) {
+    const deliveryMethod = document.querySelector('#delivery-method');
+    const locationField = document.querySelector('#location-field');
+
+    deliveryMethod.addEventListener('change', () => {
+        const needsAddress = deliveryMethod.value === 'Delivery';
+        locationField.hidden = !needsAddress;
+        document.querySelector('#location').required = needsAddress;
+    });
+
+    enquiryForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const phone = document.querySelector('#enquiry-phone').value.replace(/\s/g, '');
+        const delivery = deliveryMethod.value;
+        const needsAddress = delivery === 'Delivery';
+        const isPhone = /^[0-9+()-]{10,15}$/.test(phone);
+        const isNameValid = hasText('enquiry-name', 'Enter your full name.');
+        const isPhoneValid = showFieldError('enquiry-phone', isPhone ? '' : 'Enter a valid phone number.');
+        const isEmailValid = hasEmail('enquiry-email');
+        const isDeliveryValid = showFieldError('delivery-method', delivery ? '' : 'Choose delivery or collection.');
+        const isAddressValid = !needsAddress || hasText('location', 'Enter your delivery address.');
+        const isOrderValid = hasText('order-message', 'Tell us what you would like to order.');
+        const result = document.querySelector('#enquiry-result');
+
+        if (isNameValid && isPhoneValid && isEmailValid && isDeliveryValid && isAddressValid && isOrderValid) {
+            const savedEnquiries = localStorage.getItem('makaNanaEnquiries');
+            const enquiries = savedEnquiries ? JSON.parse(savedEnquiries) : [];
+            enquiries.push({ name: document.querySelector('#enquiry-name').value.trim(), delivery });
+            localStorage.setItem('makaNanaEnquiries', JSON.stringify(enquiries));
+            result.textContent = 'Thank you. This test enquiry was saved in this browser only. No message was sent to the business.';
+            enquiryForm.reset();
+            locationField.hidden = true;
+        } else {
+            result.textContent = 'Please fix the messages above before sending your enquiry.';
+        }
+    });
+}
+
+// Check a contact message and give the visitor an email link to open.
+const contactForm = document.querySelector('#contact-form');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const isNameValid = hasText('contact-name', 'Enter your full name.');
+        const isEmailValid = hasEmail('contact-email');
+        const isTypeValid = hasText('message-type', 'Choose a message type.');
+        const message = document.querySelector('#message').value.trim();
+        const isMessageValid = showFieldError('message', message.length >= 10 ? '' : 'Write at least 10 characters.');
+        const result = document.querySelector('#contact-result');
+
+        result.textContent = '';
+
+        if (isNameValid && isEmailValid && isTypeValid && isMessageValid) {
+            const subject = document.querySelector('#message-type').value + ' from Maka Nana website';
+            const body = `Name: ${document.querySelector('#contact-name').value.trim()}\nEmail: ${document.querySelector('#contact-email').value.trim()}\n\nMessage:\n${message}`;
+            const emailLink = document.createElement('a');
+
+            emailLink.href = `mailto:info@makananashisanyama.co.za?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            emailLink.className = 'btn';
+            emailLink.textContent = 'Open email app';
+            result.textContent = 'Your message is ready. Click here to open your email app: ';
+            result.appendChild(emailLink);
+        } else {
+            result.textContent = 'Please fix the messages above before sending your message.';
+        }
+    });
+}
