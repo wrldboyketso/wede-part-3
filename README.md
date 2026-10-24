@@ -48,6 +48,25 @@ Part 3 has started. The code is kept simple so it is easy for a beginner to read
 - The email link uses `info@makananashisanyama.co.za` as a demo recipient. This must be changed if the business gives a different email address.
 - The contact page has a Google map for the Durban Spar area.
 - Main pages now have page titles, descriptions, keywords, useful image alt text, and a `robots.txt` file.
+- A `sitemap.xml` file was added for the live website.
+
+## Live website
+
+The Part 3 website will use this GitHub Pages link after GitHub Pages is turned on in the repository settings:
+
+<https://wrldboyketso.github.io/wede-part-3/>
+
+## Part 3 testing
+
+I tested the new Part 3 features in a browser.
+
+- Menu search: typing `beef` shows Beef Steak Only.
+- Enquiry form: empty fields show clear error messages. A correct form shows a success message.
+- Contact form: empty fields show clear error messages. A correct form makes an email-app link.
+- Map: the Durban Spar area map loads on the Contact page.
+- Photo gallery: pressing a food photo opens the full-size photo.
+- Tablet test: checked at 768px wide. There was no side-to-side page movement.
+- Mobile test: checked at 390px wide. There was no side-to-side page movement.
 
 ## Before and after Part 2
 
@@ -104,6 +123,7 @@ images/
 screenshots/
 evidence/
 robots.txt
+sitemap.xml
 ```
 
 ## Easy code notes
@@ -145,6 +165,8 @@ robots.txt
 - Added a map to the contact page.
 - Added SEO page titles, descriptions, keywords, and clearer image alt text on the main pages.
 - Added `robots.txt`.
+- Added `sitemap.xml` and the planned GitHub Pages website link.
+- Tested the search, forms, map, photo gallery, tablet layout, and mobile layout.
 
 ### Part 1 - 11 August 2026
 

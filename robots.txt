@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://wrldboyketso.github.io/wede-part-3/sitemap.xml
