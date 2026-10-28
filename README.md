@@ -38,7 +38,7 @@ Part 2 is complete. The work done in this part is:
 
 ## Part 3: JavaScript and website improvements
 
-Part 3 has started. The code is kept simple so it is easy for a beginner to read.
+Part 3 is complete. The code is kept simple so it is easy for a beginner to read.
 
 - The menu has a search box. A customer can type a food name and see matching meals.
 - The enquiry form checks the name, phone number, email address, order, and delivery choice.
@@ -145,6 +145,7 @@ sitemap.xml
 ## Changelog
 
 - Changed the Contact page so the Send a message form stays hidden until the customer presses Make an enquiry.
+- Fixed the About page header so it uses one clear navigation bar and shows Cart correctly.
 
 ### Part 2 - 14 September 2026
 
