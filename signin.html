@@ -1,1 +1,40 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Maka Nana Shisanyama - Sign in</title><link rel="stylesheet" href="css/style.css?v=20260914-6"></head><body><header class="site-header"><a class="brand-logo" href="index.html"><img src="images/maka-nana-logo.jpg" alt="Maka Nana Shisanyama"></a><nav class="site-nav"><a href="menu.html">Menu</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav><div class="header-actions"><a class="account-link" href="register.html">Sign in/up</a><a class="cart-link" href="cart.html">ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂºÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢<span class="cart-count">0</span></a></div></header><main><section><h2>Sign in</h2><p>Welcome back. Enter your details to sign in.</p><form><label for="signin-contact">Email or phone number</label><input type="text" id="signin-contact" required><label for="signin-password">Password</label><input type="password" id="signin-password" required><button type="submit">Sign in</button></form><p class="account-helper">New here? <a href="register.html">Create an account</a>.</p></section></main><footer><p>Phone / WhatsApp: +27 71 840 5670</p><p>Find us near Spar, Durban, KwaZulu-Natal</p></footer><script src="js/script.js?v=20260914-3"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign In | Maka Nana Shisanyama</title>
+    <meta name="description" content="Sign in to your demo Maka Nana Shisanyama account in this browser.">
+    <meta name="keywords" content="Maka Nana sign in, demo account, Durban food account">
+    <link rel="stylesheet" href="css/style.css?v=20261028-1">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand-logo" href="index.html" aria-label="Maka Nana Shisanyama home"><img src="images/maka-nana-logo.jpg" alt="Maka Nana Shisanyama logo"></a>
+        <nav class="site-nav"><a href="menu.html">Menu</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav>
+        <div class="header-actions"><a class="account-link" href="register.html">Sign in/up</a><a class="cart-link" href="cart.html" aria-label="Open cart">Cart <span class="cart-count">0</span></a></div>
+    </header>
+    <main>
+        <section>
+            <h2>Sign in</h2>
+            <p>Use the demo email and password that you created in this browser.</p>
+            <form id="signin-form" novalidate>
+                <label for="signin-email">Email address</label>
+                <input id="signin-email" type="email" autocomplete="email" required>
+                <small class="form-error" id="signin-email-error"></small>
+
+                <label for="signin-password">Demo password</label>
+                <input id="signin-password" type="password" autocomplete="current-password" required>
+                <small class="form-error" id="signin-password-error"></small>
+
+                <button type="submit">Sign in</button>
+            </form>
+            <p id="signin-result" class="form-result" aria-live="polite"></p>
+            <button type="button" id="signout-button" hidden>Sign out</button>
+            <p class="account-helper">New here? <a href="register.html">Create a demo account</a>.</p>
+        </section>
+    </main>
+    <footer><p>Phone / WhatsApp: +27 71 840 5670</p><p>Find us near Spar, Durban, KwaZulu-Natal</p></footer>
+    <script src="js/script.js?v=20261028-1"></script>
+</body>
+</html>

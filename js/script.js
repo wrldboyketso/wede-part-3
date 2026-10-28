@@ -289,17 +289,36 @@ function hasEmail(fieldId) {
     return showFieldError(fieldId, isEmail ? '' : 'Enter a valid email address.');
 }
 
-// Save an enquiry in this browser and show a clear success message.
+// Check the checkout form. This is a student demo, not a real payment system.
 const enquiryForm = document.querySelector('#enquiry-form');
 
 if (enquiryForm) {
     const deliveryMethod = document.querySelector('#delivery-method');
     const locationField = document.querySelector('#location-field');
+    const paymentMethod = document.querySelector('#payment-method');
+    const cardField = document.querySelector('#card-field');
 
-    deliveryMethod.addEventListener('change', () => {
+    function showDeliveryField() {
         const needsAddress = deliveryMethod.value === 'Delivery';
         locationField.hidden = !needsAddress;
         document.querySelector('#location').required = needsAddress;
+    }
+
+    function showCardFields() {
+        const needsCard = paymentMethod.value === 'Demo card payment';
+        cardField.hidden = !needsCard;
+        document.querySelector('#card-name').required = needsCard;
+        document.querySelector('#card-number').required = needsCard;
+        document.querySelector('#card-expiry').required = needsCard;
+        document.querySelector('#card-cvv').required = needsCard;
+    }
+
+    deliveryMethod.addEventListener('change', () => {
+        showDeliveryField();
+    });
+
+    paymentMethod.addEventListener('change', () => {
+        showCardFields();
     });
 
     enquiryForm.addEventListener('submit', (event) => {
@@ -308,6 +327,10 @@ if (enquiryForm) {
         const phone = document.querySelector('#enquiry-phone').value.replace(/\s/g, '');
         const delivery = deliveryMethod.value;
         const needsAddress = delivery === 'Delivery';
+        const payment = paymentMethod.value;
+        const cardNumber = document.querySelector('#card-number').value.replace(/\s/g, '');
+        const cardExpiry = document.querySelector('#card-expiry').value.trim();
+        const cardCvv = document.querySelector('#card-cvv').value.trim();
         const isPhone = /^[0-9+()-]{10,15}$/.test(phone);
         const isNameValid = hasText('enquiry-name', 'Enter your full name.');
         const isPhoneValid = showFieldError('enquiry-phone', isPhone ? '' : 'Enter a valid phone number.');
@@ -315,21 +338,139 @@ if (enquiryForm) {
         const isDeliveryValid = showFieldError('delivery-method', delivery ? '' : 'Choose delivery or collection.');
         const isAddressValid = !needsAddress || hasText('location', 'Enter your delivery address.');
         const isOrderValid = hasText('order-message', 'Tell us what you would like to order.');
+        let isPaymentValid = showFieldError('payment-method', payment ? '' : 'Choose a payment method.');
+        let isCardValid = true;
         const result = document.querySelector('#enquiry-result');
 
-        if (isNameValid && isPhoneValid && isEmailValid && isDeliveryValid && isAddressValid && isOrderValid) {
+        if (payment === 'Cash on collection' && delivery !== 'Collection') {
+            isPaymentValid = showFieldError('payment-method', 'Cash on collection needs collection.');
+        } else if (payment === 'Cash on delivery' && delivery !== 'Delivery') {
+            isPaymentValid = showFieldError('payment-method', 'Cash on delivery needs delivery.');
+        }
+
+        if (payment === 'Demo card payment') {
+            const isCardNameValid = hasText('card-name', 'Enter the name on the test card.');
+            const isCardNumberValid = showFieldError('card-number', cardNumber === '1111222233334444' ? '' : 'Use 1111 2222 3333 4444 for the demo.');
+            const isCardExpiryValid = showFieldError('card-expiry', /^(0[1-9]|1[0-2])\/\d{2}$/.test(cardExpiry) ? '' : 'Use an expiry date like 12/28.');
+            const isCardCvvValid = showFieldError('card-cvv', /^\d{3}$/.test(cardCvv) ? '' : 'Use a 3 digit test CVV.');
+            isCardValid = isCardNameValid && isCardNumberValid && isCardExpiryValid && isCardCvvValid;
+        }
+
+        if (isNameValid && isPhoneValid && isEmailValid && isDeliveryValid && isAddressValid && isOrderValid && isPaymentValid && isCardValid) {
             const savedEnquiries = localStorage.getItem('makaNanaEnquiries');
             const enquiries = savedEnquiries ? JSON.parse(savedEnquiries) : [];
-            enquiries.push({ name: document.querySelector('#enquiry-name').value.trim(), delivery });
+            enquiries.push({ name: document.querySelector('#enquiry-name').value.trim(), delivery, payment });
             localStorage.setItem('makaNanaEnquiries', JSON.stringify(enquiries));
-            result.textContent = 'Thank you. This test enquiry was saved in this browser only. No message was sent to the business.';
+            result.textContent = 'Demo checkout complete. No money was taken and no real order was sent.';
             enquiryForm.reset();
             locationField.hidden = true;
+            cardField.hidden = true;
+            saveCart([]);
+            updateCartCount();
+            showCart();
         } else {
-            result.textContent = 'Please fix the messages above before sending your enquiry.';
+            result.textContent = 'Please fix the messages above before completing the demo checkout.';
         }
     });
 }
+
+// Demo accounts are saved in this browser only. They are not real secure accounts.
+const accountKey = 'makaNanaDemoAccount';
+const signedInKey = 'makaNanaSignedIn';
+
+function getDemoAccount() {
+    try {
+        return JSON.parse(localStorage.getItem(accountKey));
+    } catch {
+        return null;
+    }
+}
+
+function updateAccountLink() {
+    const accountLink = document.querySelector('.account-link');
+    const signedIn = localStorage.getItem(signedInKey);
+    const account = getDemoAccount();
+
+    if (accountLink && signedIn === 'true' && account) {
+        accountLink.textContent = `Hi, ${account.name.split(' ')[0]}`;
+        accountLink.href = 'signin.html';
+    }
+}
+
+const registerForm = document.querySelector('#register-form');
+
+if (registerForm) {
+    registerForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const password = document.querySelector('#register-password').value;
+        const confirmPassword = document.querySelector('#register-confirm-password').value;
+        const isNameValid = hasText('register-name', 'Enter your full name.');
+        const isEmailValid = hasEmail('register-email');
+        const isPasswordValid = showFieldError('register-password', password.length >= 6 ? '' : 'Use at least 6 characters.');
+        const isConfirmPasswordValid = showFieldError('register-confirm-password', password === confirmPassword ? '' : 'Passwords do not match.');
+        const result = document.querySelector('#register-result');
+
+        if (isNameValid && isEmailValid && isPasswordValid && isConfirmPasswordValid) {
+            const account = {
+                name: document.querySelector('#register-name').value.trim(),
+                email: document.querySelector('#register-email').value.trim(),
+                password
+            };
+
+            localStorage.setItem(accountKey, JSON.stringify(account));
+            localStorage.setItem(signedInKey, 'true');
+            updateAccountLink();
+            registerForm.reset();
+            result.textContent = 'Demo account created. You are now signed in on this browser.';
+        } else {
+            result.textContent = 'Please fix the messages above before creating the account.';
+        }
+    });
+}
+
+const signinForm = document.querySelector('#signin-form');
+
+if (signinForm) {
+    const signoutButton = document.querySelector('#signout-button');
+    const signedIn = localStorage.getItem(signedInKey) === 'true';
+
+    if (signedIn) signoutButton.hidden = false;
+
+    signinForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const account = getDemoAccount();
+        const email = document.querySelector('#signin-email').value.trim();
+        const password = document.querySelector('#signin-password').value;
+        const isEmailValid = hasEmail('signin-email');
+        const isPasswordValid = hasText('signin-password', 'Enter your demo password.');
+        const result = document.querySelector('#signin-result');
+
+        if (isEmailValid && isPasswordValid && account && account.email === email && account.password === password) {
+            localStorage.setItem(signedInKey, 'true');
+            updateAccountLink();
+            signoutButton.hidden = false;
+            signinForm.reset();
+            result.textContent = `Welcome back, ${account.name}. You are signed in on this browser.`;
+        } else if (isEmailValid && isPasswordValid) {
+            result.textContent = 'Email or password is not correct. Create a demo account first if needed.';
+        } else {
+            result.textContent = 'Please fix the messages above before signing in.';
+        }
+    });
+
+    signoutButton.addEventListener('click', () => {
+        localStorage.removeItem(signedInKey);
+        signoutButton.hidden = true;
+        document.querySelector('#signin-result').textContent = 'You are signed out from this browser.';
+        const accountLink = document.querySelector('.account-link');
+        accountLink.textContent = 'Sign in/up';
+        accountLink.href = 'register.html';
+    });
+}
+
+updateAccountLink();
 
 // Check a contact message and give the visitor an email link to open.
 const contactForm = document.querySelector('#contact-form');

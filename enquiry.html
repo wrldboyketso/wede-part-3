@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Order Enquiry | Maka Nana Shisanyama</title>
-    <meta name="description" content="Send Maka Nana Shisanyama an order enquiry for collection or delivery in Durban.">
-    <meta name="keywords" content="Maka Nana enquiry, food delivery, food collection, Durban order">
-    <link rel="stylesheet" href="css/style.css?v=20261021-1">
+    <title>Checkout and Payment | Maka Nana Shisanyama</title>
+    <meta name="description" content="Complete a demo Maka Nana Shisanyama checkout for collection or delivery in Durban.">
+    <meta name="keywords" content="Maka Nana checkout, demo payment, food delivery, Durban order">
+    <link rel="stylesheet" href="css/style.css?v=20261028-1">
 </head>
 <body>
     <header class="site-header">
@@ -17,8 +17,8 @@
 
     <main>
         <section>
-            <h2>Order enquiry</h2>
-            <p>Tell us what you would like to order. This student website saves the enquiry in this browser only.</p>
+            <h2>Checkout and payment</h2>
+            <p>This is a student demo. It does not take real money or send a real food order.</p>
             <form id="enquiry-form" novalidate>
                 <label for="enquiry-name">Full name</label>
                 <input id="enquiry-name" type="text" autocomplete="name" required>
@@ -50,13 +50,41 @@
                 <textarea id="order-message" rows="5" minlength="5" required></textarea>
                 <small class="form-error" id="order-message-error"></small>
 
-                <button type="submit">Send enquiry</button>
+                <label for="payment-method">Payment method</label>
+                <select id="payment-method" required>
+                    <option value="">Choose one</option>
+                    <option value="Cash on collection">Cash on collection</option>
+                    <option value="Cash on delivery">Cash on delivery</option>
+                    <option value="Demo card payment">Demo card payment</option>
+                </select>
+                <small class="form-error" id="payment-method-error"></small>
+
+                <div id="card-field" hidden>
+                    <p>Use test details only. Do not enter a real bank card.</p>
+                    <label for="card-name">Name on test card</label>
+                    <input id="card-name" type="text" autocomplete="off">
+                    <small class="form-error" id="card-name-error"></small>
+
+                    <label for="card-number">Test card number</label>
+                    <input id="card-number" type="text" inputmode="numeric" placeholder="1111 2222 3333 4444" autocomplete="off">
+                    <small class="form-error" id="card-number-error"></small>
+
+                    <label for="card-expiry">Test expiry date</label>
+                    <input id="card-expiry" type="text" inputmode="numeric" placeholder="MM/YY" autocomplete="off">
+                    <small class="form-error" id="card-expiry-error"></small>
+
+                    <label for="card-cvv">Test CVV</label>
+                    <input id="card-cvv" type="password" inputmode="numeric" placeholder="123" autocomplete="off">
+                    <small class="form-error" id="card-cvv-error"></small>
+                </div>
+
+                <button type="submit">Complete demo checkout</button>
             </form>
             <p id="enquiry-result" class="form-result" aria-live="polite"></p>
         </section>
     </main>
 
     <footer><p>Phone / WhatsApp: +27 71 840 5670</p><p>Find us near Spar, Durban, KwaZulu-Natal</p></footer>
-    <script src="js/script.js?v=20261021-1"></script>
+    <script src="js/script.js?v=20261028-1"></script>
 </body>
 </html>

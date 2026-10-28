@@ -1,1 +1,47 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Maka Nana - Sign up</title><link rel="stylesheet" href="css/style.css?v=20260914-6"></head><body><header class="site-header"><a class="brand-logo" href="index.html"><img src="images/maka-nana-logo.jpg" alt="Maka Nana"></a><nav class="site-nav"><a href="menu.html">Menu</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav><div class="header-actions"><a class="account-link" href="register.html">Sign in/up</a><a class="cart-link" href="cart.html">Cart <span class="cart-count">0</span></a></div></header><main><section><h2>Sign up</h2><p>Create an account to order faster next time.</p><form><label for="fullname">Full Name</label><input id="fullname" type="text" required><label for="email">Email Address</label><input id="email" type="email" required><label for="password">Password</label><input id="password" type="password" required><label for="confirm-password">Confirm Password</label><input id="confirm-password" type="password" required><button type="submit">Create account</button></form><p class="account-helper">Have an account? <a href="signin.html">Log in</a>.</p></section></main><footer><p>Phone / WhatsApp: +27 71 840 5670</p></footer><script src="js/script.js?v=20260914-3"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Create Account | Maka Nana Shisanyama</title>
+    <meta name="description" content="Create a demo Maka Nana Shisanyama account in your browser.">
+    <meta name="keywords" content="Maka Nana account, sign up, Durban food account">
+    <link rel="stylesheet" href="css/style.css?v=20261028-1">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand-logo" href="index.html" aria-label="Maka Nana Shisanyama home"><img src="images/maka-nana-logo.jpg" alt="Maka Nana Shisanyama logo"></a>
+        <nav class="site-nav"><a href="menu.html">Menu</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav>
+        <div class="header-actions"><a class="account-link" href="register.html">Sign in/up</a><a class="cart-link" href="cart.html" aria-label="Open cart">Cart <span class="cart-count">0</span></a></div>
+    </header>
+    <main>
+        <section>
+            <h2>Create account</h2>
+            <p>This is a student demo. Your account is saved in this browser only. Do not use a real password.</p>
+            <form id="register-form" novalidate>
+                <label for="register-name">Full name</label>
+                <input id="register-name" type="text" autocomplete="name" required>
+                <small class="form-error" id="register-name-error"></small>
+
+                <label for="register-email">Email address</label>
+                <input id="register-email" type="email" autocomplete="email" required>
+                <small class="form-error" id="register-email-error"></small>
+
+                <label for="register-password">Create demo password</label>
+                <input id="register-password" type="password" minlength="6" autocomplete="new-password" required>
+                <small class="form-error" id="register-password-error"></small>
+
+                <label for="register-confirm-password">Confirm demo password</label>
+                <input id="register-confirm-password" type="password" minlength="6" autocomplete="new-password" required>
+                <small class="form-error" id="register-confirm-password-error"></small>
+
+                <button type="submit">Create demo account</button>
+            </form>
+            <p id="register-result" class="form-result" aria-live="polite"></p>
+            <p class="account-helper">Already have a demo account? <a href="signin.html">Sign in</a>.</p>
+        </section>
+    </main>
+    <footer><p>Phone / WhatsApp: +27 71 840 5670</p><p>Find us near Spar, Durban, KwaZulu-Natal</p></footer>
+    <script src="js/script.js?v=20261028-1"></script>
+</body>
+</html>
