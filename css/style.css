@@ -387,6 +387,11 @@ form {
     border: 1px solid #e0d6c4;
 }
 
+/* JavaScript uses hidden to show and hide forms and account sections. */
+[hidden] {
+    display: none !important;
+}
+
 label {
     font-weight: bold;
     margin-top: 1rem;
