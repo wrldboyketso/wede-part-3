@@ -19,7 +19,7 @@ This website is for Maka Nana Shisanyama in Durban. It gives customers a place t
 - Cart: shows items added by the customer
 - Checkout: delivery or collection choice
 - Sign up and sign in: account pages
-- Contact: contact details, enquiry button, and message box
+- Contact: contact details, an enquiry button that opens the message form, and a message box
 
 ## Part 2: CSS and responsive design
 
@@ -142,6 +142,8 @@ sitemap.xml
 - The comments use simple English so the code is easy to explain in class.
 
 ## Changelog
+
+- Changed the Contact page so the Make an enquiry button opens the Send a message form on the same page.
 
 ### Part 2 - 14 September 2026
 
