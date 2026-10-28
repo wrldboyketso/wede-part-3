@@ -130,8 +130,10 @@ sitemap.xml
 
 - HTML makes the page content.
 - CSS makes the colours, spacing, sizes, cards, and responsive layout.
-- JavaScript is in one file. It adds cart items, shows combo meals, opens photos, and controls the mobile menu and sliders.
-- The JavaScript has short comments and small functions so it is easy to explain in class.
+- JavaScript is in one file. It adds cart items, shows combo meals, opens photos, checks forms, and controls the mobile menu and sliders.
+- The JavaScript uses simple `if/else` decisions, arrays, loops, and small functions.
+- The form code reads input values, checks the values, stops a bad form, and shows short error messages next to the field.
+- The comments use simple English so the code is easy to explain in class.
 
 ## Changelog
 
@@ -187,3 +189,9 @@ sitemap.xml
 - MDN Web Docs, 2026. Responsive design. Available at: <https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design> [Accessed 14 September 2026].
 - MDN Web Docs, 2026. Client-side form validation. Available at: <https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation> [Accessed 21 October 2026].
 - Google Maps, 2026. Durban, KwaZulu-Natal map. Available at: <https://www.google.com/maps?q=Spar%20Durban%20KwaZulu-Natal> [Accessed 21 October 2026].
+- Rosebank International, 2026. WEDE5020 Week 1 Slides. Class slides supplied by the lecturer.
+- Rosebank International, 2026. WEDE5020 Week 5 Slides. Class slides supplied by the lecturer.
+- Rosebank International, 2026. WEDE5020 Week 6 Slides. Class slides supplied by the lecturer.
+- Rosebank International, 2026. WEDE5020 JavaScript Form Validation Notes. Class notes supplied by the lecturer.
+- Rosebank International, 2026. WEDE5020 JavaScript Conditional Statements, Arrays and Functions. Class notes supplied by the lecturer.
+- Rosebank International, 2026. Website Deployment on GitHub. Class guide supplied by the lecturer.
