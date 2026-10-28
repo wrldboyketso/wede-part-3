@@ -494,7 +494,8 @@ if (signinForm) {
             updateAccountLink();
             signinForm.reset();
             showSignedInPage(true);
-            result.textContent = `Welcome back, ${account.name}. You are signed in on this browser.`;
+            window.location.href = 'signin.html?account=ready';
+            return;
         } else if (isEmailValid && isPhoneValid && isPasswordValid) {
             result.textContent = 'Email, phone number, or password is not correct. Create a demo account first if needed.';
         } else {

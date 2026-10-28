@@ -186,6 +186,7 @@ sitemap.xml
 - Made the sign-up and sign-in pages work as a simple browser-only student demo.
 - Added a sign-out button.
 - Hid the sign-in form and create-account link while an account is signed in.
+- Sent the user to the account view after a successful sign-in.
 - Added saved account details and the cart meal summary to checkout.
 - Changed checkout to demo card payment only.
 - The demo card only accepts the fixed test number `1111 2222 3333 4444`.
