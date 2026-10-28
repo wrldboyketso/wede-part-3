@@ -52,7 +52,7 @@ Part 3 has started. The code is kept simple so it is easy for a beginner to read
 
 ## Live website
 
-The Part 3 website will use this GitHub Pages link after GitHub Pages is turned on in the repository settings:
+The Part 3 website is live on GitHub Pages:
 
 <https://wrldboyketso.github.io/wede-part-3/>
 
@@ -167,6 +167,11 @@ sitemap.xml
 - Added `robots.txt`.
 - Added `sitemap.xml` and the planned GitHub Pages website link.
 - Tested the search, forms, map, photo gallery, tablet layout, and mobile layout.
+
+### Part 3 deployment - 28 October 2026
+
+- Published the Part 3 website on GitHub Pages from the `main` branch and the root folder.
+- Checked that the live home page opens and the navigation links are available.
 
 ### Part 1 - 11 August 2026
 
