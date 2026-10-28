@@ -143,7 +143,7 @@ sitemap.xml
 
 ## Changelog
 
-- Changed the Contact page so the Make an enquiry button opens the Send a message form on the same page.
+- Changed the Contact page so the Send a message form stays hidden until the customer presses Make an enquiry.
 
 ### Part 2 - 14 September 2026
 

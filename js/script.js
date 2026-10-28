@@ -518,6 +518,17 @@ fillCheckoutAccount();
 
 // Check a contact message and give the visitor an email link to open.
 const contactForm = document.querySelector('#contact-form');
+const showContactFormButton = document.querySelector('#show-contact-form');
+const contactMessageSection = document.querySelector('#send-message');
+
+// Show the contact form only after the customer asks to make an enquiry.
+if (showContactFormButton && contactMessageSection) {
+    showContactFormButton.addEventListener('click', () => {
+        contactMessageSection.hidden = false;
+        contactMessageSection.scrollIntoView({ behavior: 'smooth' });
+        document.querySelector('#contact-name').focus();
+    });
+}
 
 if (contactForm) {
     contactForm.addEventListener('submit', (event) => {
