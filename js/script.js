@@ -412,6 +412,19 @@ function fillCheckoutAccount() {
     }
 }
 
+// Put saved name and email into the contact form when the user is signed in.
+function fillContactAccount() {
+    const nameField = document.querySelector('#contact-name');
+    const emailField = document.querySelector('#contact-email');
+    const account = getDemoAccount();
+    const signedIn = localStorage.getItem(signedInKey) === 'true';
+
+    if (nameField && emailField && signedIn && account) {
+        nameField.value = account.name;
+        emailField.value = account.email;
+    }
+}
+
 const registerForm = document.querySelector('#register-form');
 
 if (registerForm) {
@@ -515,6 +528,7 @@ if (signinForm) {
 
 updateAccountLink();
 fillCheckoutAccount();
+fillContactAccount();
 
 // Check a contact message and give the visitor an email link to open.
 const contactForm = document.querySelector('#contact-form');

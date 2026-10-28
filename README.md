@@ -45,6 +45,7 @@ Part 3 has started. The code is kept simple so it is easy for a beginner to read
 - The delivery address only shows when the customer chooses delivery.
 - A correct enquiry is saved in the browser for this student demo. It does not send a real order.
 - The contact form checks all fields. It makes an email link after the message is correct.
+- When a user is signed in, the contact form fills in the saved name and email. When signed out, these fields are blank.
 - The email link uses `info@makananashisanyama.co.za` as a demo recipient. This must be changed if the business gives a different email address.
 - The contact page has a Google map for the Durban Spar area.
 - Main pages now have page titles, descriptions, keywords, useful image alt text, and a `robots.txt` file.
