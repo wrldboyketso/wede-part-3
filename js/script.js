@@ -451,9 +451,27 @@ const signinForm = document.querySelector('#signin-form');
 
 if (signinForm) {
     const signoutButton = document.querySelector('#signout-button');
-    const signedIn = localStorage.getItem(signedInKey) === 'true';
+    const signinHeading = document.querySelector('#signin-heading');
+    const signinIntro = document.querySelector('#signin-intro');
+    const signupHelper = document.querySelector('#signup-helper');
 
-    if (signedIn) signoutButton.hidden = false;
+    function showSignedInPage(isSignedIn) {
+        const account = getDemoAccount();
+
+        signinForm.hidden = isSignedIn;
+        signupHelper.hidden = isSignedIn;
+        signoutButton.hidden = !isSignedIn;
+
+        if (isSignedIn && account) {
+            signinHeading.textContent = 'Your account';
+            signinIntro.textContent = `You are signed in as ${account.name}.`;
+        } else {
+            signinHeading.textContent = 'Sign in';
+            signinIntro.textContent = 'Use the demo email, phone number, and password that you created in this browser.';
+        }
+    }
+
+    showSignedInPage(localStorage.getItem(signedInKey) === 'true');
 
     signinForm.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -474,8 +492,8 @@ if (signinForm) {
             }
             localStorage.setItem(signedInKey, 'true');
             updateAccountLink();
-            signoutButton.hidden = false;
             signinForm.reset();
+            showSignedInPage(true);
             result.textContent = `Welcome back, ${account.name}. You are signed in on this browser.`;
         } else if (isEmailValid && isPhoneValid && isPasswordValid) {
             result.textContent = 'Email, phone number, or password is not correct. Create a demo account first if needed.';
@@ -486,7 +504,7 @@ if (signinForm) {
 
     signoutButton.addEventListener('click', () => {
         localStorage.removeItem(signedInKey);
-        signoutButton.hidden = true;
+        showSignedInPage(false);
         document.querySelector('#signin-result').textContent = 'You are signed out from this browser.';
         const accountLink = document.querySelector('.account-link');
         accountLink.textContent = 'Sign in/up';

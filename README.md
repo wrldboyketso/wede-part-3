@@ -50,6 +50,7 @@ Part 3 has started. The code is kept simple so it is easy for a beginner to read
 - Main pages now have page titles, descriptions, keywords, useful image alt text, and a `robots.txt` file.
 - A `sitemap.xml` file was added for the live website.
 - The sign-up and sign-in pages now save a name, phone number, and email as a browser-only demo account. No real account is made.
+- When an account is signed in, the account page hides the sign-in form and create-account link. It shows only the signed-in name and sign-out button.
 - Checkout shows the saved account details and all meals in the cart.
 - Checkout uses demo card payment only. It never takes real money or sends a real order.
 
@@ -184,6 +185,7 @@ sitemap.xml
 
 - Made the sign-up and sign-in pages work as a simple browser-only student demo.
 - Added a sign-out button.
+- Hid the sign-in form and create-account link while an account is signed in.
 - Added saved account details and the cart meal summary to checkout.
 - Changed checkout to demo card payment only.
 - The demo card only accepts the fixed test number `1111 2222 3333 4444`.
