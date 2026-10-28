@@ -295,8 +295,8 @@ const enquiryForm = document.querySelector('#enquiry-form');
 if (enquiryForm) {
     const deliveryMethod = document.querySelector('#delivery-method');
     const locationField = document.querySelector('#location-field');
-    const paymentMethod = document.querySelector('#payment-method');
-    const cardField = document.querySelector('#card-field');
+    const orderMessage = document.querySelector('#order-message');
+    const checkoutAccountMessage = document.querySelector('#checkout-account-message');
 
     function showDeliveryField() {
         const needsAddress = deliveryMethod.value === 'Delivery';
@@ -304,22 +304,31 @@ if (enquiryForm) {
         document.querySelector('#location').required = needsAddress;
     }
 
-    function showCardFields() {
-        const needsCard = paymentMethod.value === 'Demo card payment';
-        cardField.hidden = !needsCard;
-        document.querySelector('#card-name').required = needsCard;
-        document.querySelector('#card-number').required = needsCard;
-        document.querySelector('#card-expiry').required = needsCard;
-        document.querySelector('#card-cvv').required = needsCard;
+    function showCartMeals() {
+        const cart = getCart();
+        let total = 0;
+
+        if (cart.length === 0) {
+            orderMessage.value = 'Your cart is empty. Add meals from the menu first.';
+            return;
+        }
+
+        orderMessage.value = '';
+
+        cart.forEach((item) => {
+            const itemTotal = item.price * item.quantity;
+            total += itemTotal;
+            orderMessage.value += `${item.name} x ${item.quantity} - R${itemTotal}\n`;
+        });
+
+        orderMessage.value += `Total: R${total}`;
     }
 
     deliveryMethod.addEventListener('change', () => {
         showDeliveryField();
     });
 
-    paymentMethod.addEventListener('change', () => {
-        showCardFields();
-    });
+    showCartMeals();
 
     enquiryForm.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -327,7 +336,6 @@ if (enquiryForm) {
         const phone = document.querySelector('#enquiry-phone').value.replace(/\s/g, '');
         const delivery = deliveryMethod.value;
         const needsAddress = delivery === 'Delivery';
-        const payment = paymentMethod.value;
         const cardNumber = document.querySelector('#card-number').value.replace(/\s/g, '');
         const cardExpiry = document.querySelector('#card-expiry').value.trim();
         const cardCvv = document.querySelector('#card-cvv').value.trim();
@@ -337,37 +345,25 @@ if (enquiryForm) {
         const isEmailValid = hasEmail('enquiry-email');
         const isDeliveryValid = showFieldError('delivery-method', delivery ? '' : 'Choose delivery or collection.');
         const isAddressValid = !needsAddress || hasText('location', 'Enter your delivery address.');
-        const isOrderValid = hasText('order-message', 'Tell us what you would like to order.');
-        let isPaymentValid = showFieldError('payment-method', payment ? '' : 'Choose a payment method.');
-        let isCardValid = true;
+        const isOrderValid = showFieldError('order-message', getCart().length > 0 ? '' : 'Add meals to your cart before checkout.');
+        const isCardNameValid = hasText('card-name', 'Enter the name on the test card.');
+        const isCardNumberValid = showFieldError('card-number', cardNumber === '1111222233334444' ? '' : 'Use 1111 2222 3333 4444 for the demo.');
+        const isCardExpiryValid = showFieldError('card-expiry', /^(0[1-9]|1[0-2])\/\d{2}$/.test(cardExpiry) ? '' : 'Use an expiry date like 12/28.');
+        const isCardCvvValid = showFieldError('card-cvv', /^\d{3}$/.test(cardCvv) ? '' : 'Use a 3 digit test CVV.');
         const result = document.querySelector('#enquiry-result');
 
-        if (payment === 'Cash on collection' && delivery !== 'Collection') {
-            isPaymentValid = showFieldError('payment-method', 'Cash on collection needs collection.');
-        } else if (payment === 'Cash on delivery' && delivery !== 'Delivery') {
-            isPaymentValid = showFieldError('payment-method', 'Cash on delivery needs delivery.');
-        }
-
-        if (payment === 'Demo card payment') {
-            const isCardNameValid = hasText('card-name', 'Enter the name on the test card.');
-            const isCardNumberValid = showFieldError('card-number', cardNumber === '1111222233334444' ? '' : 'Use 1111 2222 3333 4444 for the demo.');
-            const isCardExpiryValid = showFieldError('card-expiry', /^(0[1-9]|1[0-2])\/\d{2}$/.test(cardExpiry) ? '' : 'Use an expiry date like 12/28.');
-            const isCardCvvValid = showFieldError('card-cvv', /^\d{3}$/.test(cardCvv) ? '' : 'Use a 3 digit test CVV.');
-            isCardValid = isCardNameValid && isCardNumberValid && isCardExpiryValid && isCardCvvValid;
-        }
-
-        if (isNameValid && isPhoneValid && isEmailValid && isDeliveryValid && isAddressValid && isOrderValid && isPaymentValid && isCardValid) {
+        if (isNameValid && isPhoneValid && isEmailValid && isDeliveryValid && isAddressValid && isOrderValid && isCardNameValid && isCardNumberValid && isCardExpiryValid && isCardCvvValid) {
             const savedEnquiries = localStorage.getItem('makaNanaEnquiries');
             const enquiries = savedEnquiries ? JSON.parse(savedEnquiries) : [];
-            enquiries.push({ name: document.querySelector('#enquiry-name').value.trim(), delivery, payment });
+            enquiries.push({ name: document.querySelector('#enquiry-name').value.trim(), delivery, payment: 'Demo card payment' });
             localStorage.setItem('makaNanaEnquiries', JSON.stringify(enquiries));
             result.textContent = 'Demo checkout complete. No money was taken and no real order was sent.';
             enquiryForm.reset();
             locationField.hidden = true;
-            cardField.hidden = true;
             saveCart([]);
             updateCartCount();
             showCart();
+            showCartMeals();
         } else {
             result.textContent = 'Please fix the messages above before completing the demo checkout.';
         }
@@ -397,6 +393,25 @@ function updateAccountLink() {
     }
 }
 
+// Put saved account details into checkout when the user is signed in.
+function fillCheckoutAccount() {
+    const nameField = document.querySelector('#enquiry-name');
+    const phoneField = document.querySelector('#enquiry-phone');
+    const emailField = document.querySelector('#enquiry-email');
+    const accountMessage = document.querySelector('#checkout-account-message');
+    const account = getDemoAccount();
+    const signedIn = localStorage.getItem(signedInKey) === 'true';
+
+    if (nameField && phoneField && emailField && accountMessage && signedIn && account) {
+        nameField.value = account.name;
+        phoneField.value = account.phone || '';
+        emailField.value = account.email;
+        accountMessage.textContent = `You are signed in as ${account.name}. Your saved details are shown below.`;
+    } else if (accountMessage) {
+        accountMessage.textContent = 'Please sign in first so your saved details can be shown here.';
+    }
+}
+
 const registerForm = document.querySelector('#register-form');
 
 if (registerForm) {
@@ -405,15 +420,18 @@ if (registerForm) {
 
         const password = document.querySelector('#register-password').value;
         const confirmPassword = document.querySelector('#register-confirm-password').value;
+        const phone = document.querySelector('#register-phone').value.replace(/\s/g, '');
         const isNameValid = hasText('register-name', 'Enter your full name.');
+        const isPhoneValid = showFieldError('register-phone', /^[0-9+()-]{10,15}$/.test(phone) ? '' : 'Enter a valid phone number.');
         const isEmailValid = hasEmail('register-email');
         const isPasswordValid = showFieldError('register-password', password.length >= 6 ? '' : 'Use at least 6 characters.');
         const isConfirmPasswordValid = showFieldError('register-confirm-password', password === confirmPassword ? '' : 'Passwords do not match.');
         const result = document.querySelector('#register-result');
 
-        if (isNameValid && isEmailValid && isPasswordValid && isConfirmPasswordValid) {
+        if (isNameValid && isPhoneValid && isEmailValid && isPasswordValid && isConfirmPasswordValid) {
             const account = {
                 name: document.querySelector('#register-name').value.trim(),
+                phone: document.querySelector('#register-phone').value.trim(),
                 email: document.querySelector('#register-email').value.trim(),
                 password
             };
@@ -442,19 +460,25 @@ if (signinForm) {
 
         const account = getDemoAccount();
         const email = document.querySelector('#signin-email').value.trim();
+        const phone = document.querySelector('#signin-phone').value.replace(/\s/g, '');
         const password = document.querySelector('#signin-password').value;
         const isEmailValid = hasEmail('signin-email');
+        const isPhoneValid = showFieldError('signin-phone', /^[0-9+()-]{10,15}$/.test(phone) ? '' : 'Enter a valid phone number.');
         const isPasswordValid = hasText('signin-password', 'Enter your demo password.');
         const result = document.querySelector('#signin-result');
 
-        if (isEmailValid && isPasswordValid && account && account.email === email && account.password === password) {
+        if (isEmailValid && isPhoneValid && isPasswordValid && account && account.email === email && account.password === password && (!account.phone || account.phone.replace(/\s/g, '') === phone)) {
+            if (!account.phone) {
+                account.phone = document.querySelector('#signin-phone').value.trim();
+                localStorage.setItem(accountKey, JSON.stringify(account));
+            }
             localStorage.setItem(signedInKey, 'true');
             updateAccountLink();
             signoutButton.hidden = false;
             signinForm.reset();
             result.textContent = `Welcome back, ${account.name}. You are signed in on this browser.`;
-        } else if (isEmailValid && isPasswordValid) {
-            result.textContent = 'Email or password is not correct. Create a demo account first if needed.';
+        } else if (isEmailValid && isPhoneValid && isPasswordValid) {
+            result.textContent = 'Email, phone number, or password is not correct. Create a demo account first if needed.';
         } else {
             result.textContent = 'Please fix the messages above before signing in.';
         }
@@ -471,6 +495,7 @@ if (signinForm) {
 }
 
 updateAccountLink();
+fillCheckoutAccount();
 
 // Check a contact message and give the visitor an email link to open.
 const contactForm = document.querySelector('#contact-form');

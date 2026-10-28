@@ -49,8 +49,9 @@ Part 3 has started. The code is kept simple so it is easy for a beginner to read
 - The contact page has a Google map for the Durban Spar area.
 - Main pages now have page titles, descriptions, keywords, useful image alt text, and a `robots.txt` file.
 - A `sitemap.xml` file was added for the live website.
-- The sign-up and sign-in pages now work as a browser-only demo account. No real account is made.
-- The checkout has cash and demo card payment choices. It never takes real money or sends a real order.
+- The sign-up and sign-in pages now save a name, phone number, and email as a browser-only demo account. No real account is made.
+- Checkout shows the saved account details and all meals in the cart.
+- Checkout uses demo card payment only. It never takes real money or sends a real order.
 
 ## Live website
 
@@ -69,8 +70,8 @@ I tested the new Part 3 features in a browser.
 - Photo gallery: pressing a food photo opens the full-size photo.
 - Tablet test: checked at 768px wide. There was no side-to-side page movement.
 - Mobile test: checked at 390px wide. There was no side-to-side page movement.
-- Demo account: created a browser-only account, signed in, and signed out.
-- Demo checkout: checked cash payment rules and the fixed test card details. No real payment was made.
+- Demo account: created a browser-only account with name, phone number, and email, then signed in and signed out.
+- Demo checkout: checked the saved account details, cart meal summary, and fixed test card details. No real payment was made.
 
 ## Before and after Part 2
 
@@ -183,7 +184,8 @@ sitemap.xml
 
 - Made the sign-up and sign-in pages work as a simple browser-only student demo.
 - Added a sign-out button.
-- Added cash on collection, cash on delivery, and demo card payment choices to checkout.
+- Added saved account details and the cart meal summary to checkout.
+- Changed checkout to demo card payment only.
 - The demo card only accepts the fixed test number `1111 2222 3333 4444`.
 - Added clear messages to show that no real money is taken and no real order is sent.
 

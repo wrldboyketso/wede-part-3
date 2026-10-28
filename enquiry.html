@@ -19,6 +19,7 @@
         <section>
             <h2>Checkout and payment</h2>
             <p>This is a student demo. It does not take real money or send a real food order.</p>
+            <p id="checkout-account-message" class="form-result" aria-live="polite"></p>
             <form id="enquiry-form" novalidate>
                 <label for="enquiry-name">Full name</label>
                 <input id="enquiry-name" type="text" autocomplete="name" required>
@@ -46,20 +47,12 @@
                     <small class="form-error" id="location-error"></small>
                 </div>
 
-                <label for="order-message">What would you like to order?</label>
-                <textarea id="order-message" rows="5" minlength="5" required></textarea>
+                <label for="order-message">Meals in your cart</label>
+                <textarea id="order-message" rows="5" readonly></textarea>
                 <small class="form-error" id="order-message-error"></small>
 
-                <label for="payment-method">Payment method</label>
-                <select id="payment-method" required>
-                    <option value="">Choose one</option>
-                    <option value="Cash on collection">Cash on collection</option>
-                    <option value="Cash on delivery">Cash on delivery</option>
-                    <option value="Demo card payment">Demo card payment</option>
-                </select>
-                <small class="form-error" id="payment-method-error"></small>
-
-                <div id="card-field" hidden>
+                <div id="card-field">
+                    <h3>Card payment</h3>
                     <p>Use test details only. Do not enter a real bank card.</p>
                     <label for="card-name">Name on test card</label>
                     <input id="card-name" type="text" autocomplete="off">
