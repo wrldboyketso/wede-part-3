@@ -97,6 +97,20 @@ I tested the new Part 3 features in a browser.
 | About page moved sideways | Fixed the broken cart text and stopped horizontal page movement |
 | Meal names and prices needed changes | Added "Only" names, Tripe Only, sides, meats, and takeaway size prices |
 
+## Part 2 lecturer feedback and Part 3 refinements
+
+The Formative 2 Part 2 feedback gave this project 72/85. The good results were the Part 1 feedback section (10/10), layout structure (5/5), responsive layout adjustment (5/5), responsive typography (5/5), and references (5/5).
+
+| Lecturer feedback area | Part 2 score | Part 3 response |
+| --- | --- | --- |
+| External CSS stylesheet | 8/10 | Checked that all website pages use the one `css/style.css` file. |
+| Default CSS styling | 4/5 | Kept the reset, colour variables, font rules, and body settings together at the top of the stylesheet. |
+| Decoration and colour | 4/5 | Kept the cream, black, red, and gold colours consistent across the pages. |
+| Navigation menu | 4/5 | Kept the mobile menu and clear navigation links on the main pages. |
+| Image adjustment | 4/5 | Kept responsive image sizes and the full-image photo preview. |
+| CSS pseudo-classes | 7/10 | Added clear hover, active, focus, and keyboard focus styles for links, buttons, and form controls. |
+| Media queries / breakpoints | 7/10 | Kept and checked the tablet (768px) and mobile (600px) media queries. |
+
 ## Responsive screenshots
 
 I tested the website on a PC and on a real mobile phone. The mobile screenshots show the phone status bar and battery, which shows that the mobile test was done on a phone. I do not have a tablet device, so the tablet screenshots were captured at a 768px tablet-size browser view.
